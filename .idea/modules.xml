@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-rabbitmq-delay-queue/spring-boot-rabbitmq-delay-queue.iml" filepath="$PROJECT_DIR$/spring-boot-rabbitmq-delay-queue/spring-boot-rabbitmq-delay-queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-samples.iml" filepath="$PROJECT_DIR$/spring-cloud-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stream-rabbitmq-delay-queue/stream-rabbitmq-delay-queue.iml" filepath="$PROJECT_DIR$/stream-rabbitmq-delay-queue/stream-rabbitmq-delay-queue.iml" />
+    </modules>
+  </component>
+</project>

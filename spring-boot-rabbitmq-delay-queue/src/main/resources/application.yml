@@ -1,0 +1,11 @@
+debug: true
+spring:
+  application:
+    name: spring-boot-rabbitmq-delay-queue
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin1234567
+server:
+  port: 8320

@@ -1,0 +1,40 @@
+debug: true
+spring:
+  application:
+    name: stream-rabbitmq-delay-queue
+  rabbitmq:
+    host: node1
+    port: 5672
+    username: admin
+    password: admin1234567
+  cloud:
+    stream:
+      bindings:
+        mychannel_input:  #消费者
+          group: consumer
+          destination: stream_exchange
+          consumer:
+            max-attempts: 3 #重试次数
+        mychannel_output: #发布者
+          destination: stream_exchange
+      rabbit:
+        bindings:
+          mychannel_input:  #stream创建队列的时候，会自动创建死信队列
+            consumer:
+              auto-bind-dlq: true #开启创建绑定死信队列
+              dlq-ttl: 4000 #失效时间
+              #dlq-dead-letter-exchange: stream_exchange #dlp转发消息，使用的exchange
+              #dlq-dead-letter-routing-key: consumer #dlp的路由键
+              dead-letter-queue-name: stream_exchange.consumer.dlq  #dlp的队列名称
+server:
+  port: 8330
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒
