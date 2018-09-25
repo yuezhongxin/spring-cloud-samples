@@ -1,8 +1,0 @@
-.idea
-*.iws
-*.iml
-*.ipr
-target/
-logs/
-contract_files/
-nohup.out
