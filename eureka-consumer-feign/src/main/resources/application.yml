@@ -1,0 +1,11 @@
+debug: true
+spring:
+  application:
+    name: eureka-consumer-feign
+server:
+  port: 8140
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+      defaultZone: http://localhost:8100/eureka/

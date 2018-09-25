@@ -1,0 +1,37 @@
+debug: true
+spring:
+  application:
+    name: config-server-svn
+  cloud:
+    config:
+      server:
+        svn:
+          uri: https://svn.xishuai.cn/svn/xxxx/trunk/xxxxxx
+          username: yuezhongxin
+          password: yuezhongxin123
+          default-label: config-repo
+  profiles:
+    active: subversion
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+server:
+  port: 8200
+management:
+  security:
+    enabled: false
+encrypt:
+  key-store:
+    alias: config-server-key
+    password: 123qweasd
+    secret: 123qweasd
+    location: classpath:/config-server-key.jks
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/    #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒

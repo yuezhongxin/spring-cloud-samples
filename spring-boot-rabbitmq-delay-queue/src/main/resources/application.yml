@@ -6,6 +6,6 @@ spring:
     host: manager1
     port: 8001
     username: admin
-    password: admin1234567
+    password: admin123
 server:
   port: 8320

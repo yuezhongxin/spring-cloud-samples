@@ -1,0 +1,49 @@
+debug: true
+spring:
+  application:
+    name: eureka-server
+logging:
+  level:
+    com.netflix.eureka: 'off'
+    com.netflix.discovery: 'off'
+---
+spring:
+  profiles: manager1
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: manager1
+    #prefer-ip-address: true #以IP地址进行服务注册
+    #instance-id:${spring.cloud.client.ipAddress}:${server.port}  #IP地址显示，参考：https://www.jianshu.com/p/fa1e9c8e4f47
+  client:
+    service-url:
+      defaultZone: http://manager2:8100/eureka/,http://manager3:8100/eureka/
+    fetch-registry: true  #开启提供服清单缓存设置
+    registry-fetch-interval-seconds: 30 #提供给服务消费方服务清单的缓存更新时间间隔（意思并不是实时，有一定时间的缓存），默认30秒
+---
+spring:
+  profiles: manager2
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: manager2
+  client:
+    service-url:
+      defaultZone: http://manager1:8100/eureka/,http://manager3:8100/eureka/
+    fetch-registry: true  #开启提供服清单缓存设置
+    registry-fetch-interval-seconds: 30 #提供给服务消费方服务清单的缓存更新时间间隔（意思并不是实时，有一定时间的缓存），默认30秒
+---
+spring:
+  profiles: manager3
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: manager3
+  client:
+    service-url:
+      defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/
+    fetch-registry: true  #开启提供服清单缓存设置
+    registry-fetch-interval-seconds: 30 #提供给服务消费方服务清单的缓存更新时间间隔（意思并不是实时，有一定时间的缓存），默认30秒

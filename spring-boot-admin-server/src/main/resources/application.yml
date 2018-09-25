@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: spring-boot-admin-server
+  #mail:
+  #  host: smtp.qq.com
+  #  port: 465
+  #  username: 123@qq.com
+  #  password: 123
+  #  properties:
+  #    mail:
+  #      smtp:
+  #        socketFactory:
+  #          port: 465
+  #          class: javax.net.ssl.SSLSocketFactory
+  #          fallback: false
+  #        auth: true
+  #        starttls:
+  #          enable: true
+  #          required: true
+  #boot:
+  #  admin:
+  #    notify:
+  #      mail:
+  #        from: 123@qq.com
+  #        to: 1@qq.com,2@qq.com,3@qq.com
+server:
+  port: 8230
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒

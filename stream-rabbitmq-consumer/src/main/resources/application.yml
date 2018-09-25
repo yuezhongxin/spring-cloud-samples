@@ -1,0 +1,35 @@
+debug: true
+spring:
+  application:
+    name: stream-rabbitmq-consumer
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+  cloud:
+    stream:
+      bindings:
+        input:
+          group: consumer1 #消息组设置（负载均衡内的服务相同的group），消息发送到同一个destination，只能被一个group中的一个消费者消费掉
+          destination: stream_exchange #消息组意思：设置相同group的服务，发送到相同的queue中（相同的exchange）
+        my_input_channel:
+          group: consumer1
+          destination: my_test_exchange #消息目的地
+          partitioned: true #开启消费分区，针对my_input_channel
+        my_output_channel_callback:
+          destination: my_test_callback_exchange
+      instance-count: 1 #消息分区数量设置
+      instance-index: 0 #消息分区索引设置，具备相同特征的消息只被同一个实例进行消费
+server:
+  port: 8250
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/    #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒

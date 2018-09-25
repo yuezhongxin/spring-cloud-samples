@@ -1,0 +1,20 @@
+debug: true
+spring:
+  application:
+    name: eureka-server
+logging:
+  level:
+    com.netflix.eureka: 'off'
+    com.netflix.discovery: 'off'
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: devserver
+  server:
+    enable-self-preservation: false #关闭自我保护机制
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

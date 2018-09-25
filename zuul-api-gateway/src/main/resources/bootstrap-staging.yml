@@ -1,0 +1,49 @@
+spring:
+  #zipkin:
+  #  base-url: http://localhost:8270
+  rabbitmq: #使用RabbitMQ消息队列进行数据收集
+    host: devserver
+    port: 8001
+    username: admin
+    password: admin123
+  sleuth:
+    sampler:
+      percentage: 1.0
+zuul:
+  routes:
+    api-local:
+      path: /local/**
+      url: forward:/local  #/local路由跳转到指定url进行处理（HelloController）
+    api-a:
+      path: /eureka-client/**
+      serviceId: eureka-client
+      retryable: true #开启单个服务重试机制
+    eureka-consumer: /eureka-consumer/**  #路由配置的另一种简洁写法：zuul.routes.<serviceId>=<path>
+  prefix: /api  #统一路由前缀/api
+  ignored-patterns: /**/hellozuul/** #忽略/hellozuul的路由请求，报404
+  add-host-header: true #表示API网关在进行请求路由转发前为请求设置Host头信息（解决内部重定向服务信息host暴露问题）
+  retryable: true #开启全局重试机制
+  SendErrorFilter:
+    error:
+      disable: true #禁用默认的SendErrorFilter过滤器
+ribbon: #参考：https://blog.csdn.net/tianyaleixiaowu/article/details/79128404
+  ReadTimeout: 500 #请求处理的超时时间，超过这个时间将进行重试
+  ConnectTimeout: 500 #请求连接的超时时间，超过这个时间将进行重试
+  MaxAutoRetries: 2 #重试次数
+  MaxAutoRetriesNextServer: 0 #切换服务的次数，只切换一次，不行就拉倒
+  retryableStatusCodes: 404,502,500,408 #哪些错误码触发重试
+  OkToRetryOnAllOperations: true #对所有操作请求都进行重试，不建议
+server:
+  port: 8260
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://devserver:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒
+logging:
+  config: classpath:log4j2-dev.xml

@@ -1,0 +1,37 @@
+debug: true
+spring:
+  application:
+    name: config-server-git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yuezhongxin/spring-cloud-samples.git
+          search-paths: 'config-repo'
+          #search-paths: '{application}'
+          username: yuezhongxin@mail.com
+          password: 123
+  rabbitmq:
+    host: localhost
+    port: 8001
+    username: admin
+    password: admin123
+server:
+  port: 8180
+encrypt:
+  key-store:
+    alias: config-server-key
+    password: 123qweasd
+    secret: 123qweasd
+    location: classpath:/config-server-key.jks
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+      #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒

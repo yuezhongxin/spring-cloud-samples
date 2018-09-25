@@ -1,0 +1,20 @@
+debug: true
+spring:
+  application:
+    name: hystrix-dashboard
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+server:
+  port: 8170
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/    #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+#turbine HTTP收集方式
+#turbine:
+#  app-config: eureka-consumer-hystrix-with-ribbon,eureka-consumer-hystrix-with-feign
+#  aggregator:
+#    cluster-config: default

@@ -1,0 +1,11 @@
+debug: true
+spring:
+  application:
+    name: spring-boot-rabbitmq
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+server:
+  port: 8220

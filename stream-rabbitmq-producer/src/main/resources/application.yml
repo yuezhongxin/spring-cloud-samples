@@ -1,0 +1,33 @@
+debug: true
+spring:
+  application:
+    name: stream-rabbitmq-producer
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: stream_exchange
+        my_output_channel:
+          destination: my_test_exchange #消息目的地
+          partition-key-expression: payload.no #消息分区键，针对my_output_channel
+          partition-count: 1 #消息分区数量设置
+        my_input_channel_callback: #回调exchange定义
+          group: consumer2
+          destination: my_test_callback_exchange #消息目的地
+server:
+  port: 8240
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/    #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90  #失效时间（超过一定时间还没有检查心跳通过，从服务中心剔除），默认90秒，生产环境建议10秒
+    lease-renewal-interval-in-seconds: 30 #心跳时间（类似于健康检查时间间隔），默认30秒，生产环境建议3秒

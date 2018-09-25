@@ -12,8 +12,33 @@
 	<description>Demo project for Spring Cloud</description>
 
 	<modules>
+		<module>eureka-server</module>
+		<module>eureka-client</module>
+		<module>eureka-consumer</module>
+		<module>eureka-consumer-ribbon</module>
+		<module>eureka-consumer-feign</module>
+		<module>eureka-consumer-hystrix-with-feign</module>
+		<module>eureka-consumer-hystrix-with-ribbon</module>
+		<module>config-client-git</module>
+		<module>config-client-svn</module>
+		<module>config-server-git</module>
+		<module>config-server-svn</module>
+		<module>hystrix-dashboard</module>
+		<module>spring-boot-rabbitmq</module>
+		<module>spring-boot-admin-server</module>
+		<module>stream-rabbitmq-producer</module>
+		<module>stream-rabbitmq-consumer</module>
+		<module>zuul-api-gateway</module>
+		<module>zipkin-server</module>
+		<module>spring-boot-service</module>
+		<module>turbine-stream-rabbitmq</module>
+		<module>authorization-server-oauth2</module>
+		<module>resource-server</module>
 		<module>spring-boot-rabbitmq-delay-queue</module>
 		<module>stream-rabbitmq-delay-queue</module>
+		<module>config-client-git-startup</module>
+		<module>spring-boot-admin-server</module>
+		<module>spring-boot-log4j2</module>
 	</modules>
 
 	<parent>

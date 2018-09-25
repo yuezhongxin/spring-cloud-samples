@@ -1,0 +1,26 @@
+debug: true
+management:
+  # 配置Spring Boot Actuator的端口
+  port: 8291
+spring:
+  application:
+    name: turbine-stream-rabbitmq
+  rabbitmq:
+    host: manager1
+    port: 8001
+    username: admin
+    password: admin123
+server:
+  port: 8290
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/    #defaultZone: http://manager1:8100/eureka/,http://manager2:8100/eureka/,http://manager3:8100/eureka/
+  instance:
+    prefer-ip-address: true
+    non-secure-port: 8290 #参考资料：http://itmuch.com/spring-cloud-sum/turbine-stream-cannot-register-into-eureka-server/
+#turbine HTTP收集方式
+#turbine:
+#  app-config: eureka-consumer-hystrix-with-ribbon,eureka-consumer-hystrix-with-feign
+#  aggregator:
+#    cluster-config: default

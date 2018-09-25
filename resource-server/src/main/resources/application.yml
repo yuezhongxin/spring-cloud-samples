@@ -1,0 +1,6 @@
+debug: true
+spring:
+  application:
+    name: resource-server
+server:
+  port: 8310
