@@ -2,11 +2,11 @@ debug: true
 spring:
   application:
     name: hystrix-dashboard
-  rabbitmq:
-    host: manager1
-    port: 8001
-    username: admin
-    password: admin123
+  #rabbitmq:
+  #  host: manager1
+  #  port: 8001
+  #  username: admin
+  #  password: admin123
 server:
   port: 8170
 eureka:

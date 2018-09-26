@@ -2,11 +2,11 @@ debug: true
 spring:
   application:
     name: eureka-consumer-hystrix-with-ribbon
-  rabbitmq:
-    host: manager1
-    port: 8001
-    username: admin
-    password: admin123
+  #rabbitmq:
+  #  host: manager1
+  #  port: 8001
+  #  username: admin
+  #  password: admin123
 server:
   port: 8150
 eureka:
