@@ -29,7 +29,7 @@
 		<!--log4j2-->
 		<log4j2>1.9.9</log4j2>
 		<log4j-api>2.11.0</log4j-api>
-		<log4j-core>2.13.2</log4j-core>
+		<log4j-core>2.16.0</log4j-core>
 		<log4j-slf4j-impl>2.11.0</log4j-slf4j-impl>
 		<jul-to-slf4j>1.7.25</jul-to-slf4j>
 		<jcl-over-slf4j>1.7.25</jcl-over-slf4j>
