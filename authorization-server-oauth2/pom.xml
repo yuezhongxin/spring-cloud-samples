@@ -24,7 +24,7 @@
 		<common-utils>1.9.1</common-utils>
 		<!--mysql-->
 		<mybatis>1.9</mybatis>
-		<mysql>8.0.16</mysql>
+		<mysql>8.0.28</mysql>
 		<druid>1.1.9</druid>
 		<!--log4j2-->
 		<log4j2>1.9.9</log4j2>
